@@ -5,36 +5,26 @@ import { Context } from "../store/appContext";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
-
+//FORMULARIO INICIO DE SESION
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
+		<div className="container m-5 p-5">
+			<form>
+			<div className="mb-3">
+				<label for="input_email" className="form-label">Email</label>
+				<input type="email" className="form-control" id="input_email" aria-describedby="emailHelp"/>
+				<div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+			</div>
+			<div className="mb-3">
+				<label for="input_password" className="form-label">Contraseña</label>
+				<input type="password" className="form-control" id="input_password"/>
+			</div>
+			<button type="submit" className="btn btn-primary">Ingresar</button>
+			</form>
 			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
+			<button type="button" className="btn btn-danger">Volver</button>
+			</Link>
+			<Link to="/single">
+			<button type="button" className="btn btn-success">Crear Usuario</button>
 			</Link>
 		</div>
 	);
