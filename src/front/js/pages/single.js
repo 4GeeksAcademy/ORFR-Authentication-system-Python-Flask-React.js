@@ -36,9 +36,7 @@ export const Single = props => {
 		}
 	}
 
-	const Modal = (resp) => {
-		return resp
-	}
+	
 
 	// const params = useParams();
 //FORMULARIO CREACION DE USUARIO

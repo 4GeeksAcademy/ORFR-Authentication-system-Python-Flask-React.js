@@ -11,6 +11,9 @@ const { store, actions } = useContext(Context);
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
 				</Link>
+				<Link to="/user">
+						<button className="btn btn-info">Mi Perfil</button>
+					</Link>
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-info">Iniciar Sesion</button>

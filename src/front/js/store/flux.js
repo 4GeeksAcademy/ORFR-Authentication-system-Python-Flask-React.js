@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -45,6 +48,61 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
+			Login: async (usuarioLogin) => {
+				const store = getStore();
+				try{
+					// fetching data from the backend
+					let resp = await fetch('https://solid-space-eureka-699j979v649qh5w4g-3001.app.github.dev/api/login', {
+						method: 'POST',
+						body: JSON.stringify(usuarioLogin),
+						headers: {
+							'Content-Type': 'application/json',
+						  },	
+					})
+					let data = await resp.json()
+					console.log(data.name);
+					if (data.name) {
+						alert("Bienvenid@ "+ data.name)
+						localStorage.setItem("token" , data.token)
+						localStorage.setItem("name" , data.name)
+						localStorage.setItem("email" , data.email)
+					}
+					else {
+						alert(data.error)
+					}
+					
+				}catch(error){
+					console.log("Error loading message from backend ", error)
+				}
+			},
+
+
+			getDataProfile: async () => {
+				const store = getStore();
+				let token = localStorage.getItem("token");
+				 if (!token) {
+					alert("Primero debes iniciar Sesion!")
+					return
+				 }
+				try{
+					let resp = await fetch('https://solid-space-eureka-699j979v649qh5w4g-3001.app.github.dev/api/user', {
+						method: 'GET',
+						headers: {
+							Authorization:`Bearer ${token}`
+						  },	
+					})
+					let data = await resp.json()
+					window.location.href = '/user'
+					
+				}catch(error){
+					console.log("Error loading message from backend ", error)
+				}
+			},
+
+			cerrarSesion: async () => {
+				localStorage.clear();
+
+			},
 
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
