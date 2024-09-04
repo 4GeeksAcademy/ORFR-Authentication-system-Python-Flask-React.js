@@ -21,7 +21,7 @@ export const Demo = () => {
 
 
 	const iniciarSesion = async (e) => {
-		console.log(dataLogin);
+		// console.log(dataLogin);
 		
 		e.preventDefault() // para pausar el proceso y que no se actualice la pag.
 		try{
@@ -31,7 +31,7 @@ export const Demo = () => {
 				password: ""
 			})
 			if ( localStorage.getItem("token")) {
-				navigate("/user")
+				navigate("/")
 				console.log(localStorage.getItem("token"));
 				
 			}

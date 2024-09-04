@@ -8,12 +8,13 @@ const { store, actions } = useContext(Context);
 	return (
 		<nav className="navbar navbar-light bg-light">
 			<div className="container">
+				<div>
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1">Inicio</span>
 				</Link>
-				<Link to="/user">
-						<button className="btn btn-info">Mi Perfil</button>
-					</Link>
+				
+					<button onClick={()=>actions.getDataProfile()} className="btn btn-info">Mi Perfil</button>
+				</div>	
 				<div className="ml-auto">
 					<Link to="/demo">
 						<button className="btn btn-info">Iniciar Sesion</button>

@@ -6,7 +6,7 @@ from api.models import db, User
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_bcrypt import Bcrypt
-from flask_jwt_extended import JWTManager, create_access_token
+from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 
 api = Blueprint('api', __name__)
 
@@ -45,7 +45,7 @@ def post_new_user():
         db.session.add(add_user)
         db.session.commit()
 
-        return jsonify({"done":"se creo el usuario "+str(email)}), 200
+        return jsonify({"done":"se creó el usuario "+str(email)}), 200
 
     except Exception as e:
         return jsonify({"error": "error en el servidor "+str(e)}), 500
@@ -91,4 +91,6 @@ def get_Profile():
     if (current_user_id):
         data_user = User.query.filter_by(id=current_user_id).first()
         return jsonify(data_user.serialize()), 200
+    else:
+        return jsonify({"error": "Debe iniciar sesion"}), 200
     

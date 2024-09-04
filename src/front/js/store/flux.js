@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -16,7 +17,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			userActive: [],
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -36,10 +39,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await resp.json()
 					console.log(data.done);
 					if (data.done) {
-						alert(data.done)
+						Swal.fire("Hecho!", `${(data.done)}`, "success");
 					}
 					else {
-						alert(data.error)
+						Swal.fire("Oh no!", `${(data.error)}`, "error");
 					}
 					
 				}catch(error){
@@ -62,13 +65,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let data = await resp.json()
 					console.log(data.name);
 					if (data.name) {
-						alert("Bienvenid@ "+ data.name)
+						// alert("Bienvenid@ "+ data.name)
 						localStorage.setItem("token" , data.token)
 						localStorage.setItem("name" , data.name)
 						localStorage.setItem("email" , data.email)
 					}
 					else {
-						alert(data.error)
+						Swal.fire("Oh no!", `${(data.error)}`, "error");
 					}
 					
 				}catch(error){
@@ -81,7 +84,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const store = getStore();
 				let token = localStorage.getItem("token");
 				 if (!token) {
-					alert("Primero debes iniciar Sesion!")
+					Swal.fire("Hey!", "Primero debes iniciar sesión", "warning");
 					return
 				 }
 				try{
@@ -92,7 +95,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 						  },	
 					})
 					let data = await resp.json()
+					console.log(data);
+					setStore({...getStore(), userActive: data })
 					window.location.href = '/user'
+
 					
 				}catch(error){
 					console.log("Error loading message from backend ", error)
@@ -101,7 +107,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			cerrarSesion: async () => {
 				localStorage.clear();
-
+				setStore({ userActive: [] })
 			},
 
 			exampleFunction: () => {
