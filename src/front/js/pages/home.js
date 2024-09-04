@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import { Link,useNavigate } from "react-router-dom";
 import "../../styles/home.css";
+import "../../styles/single.css";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);

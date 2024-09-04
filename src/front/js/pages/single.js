@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
+import "../../styles/single.css";
 
 export const Single = props => {
 	const { store, actions } = useContext(Context);
@@ -41,7 +42,7 @@ export const Single = props => {
 	// const params = useParams();
 //FORMULARIO CREACION DE USUARIO
 	return (
-		<div className="container m-5 p-5">
+		<div className="container m-5 p-5" id="form-create-user">
 			<form onSubmit={enviarData}>
 				<div class="row mb-3">
 					<label for="input_new_name" class="col-sm-2 col-form-label">Nombre</label>
