@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { Context } from "../store/appContext";
+import "../../styles/demo.css";
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
@@ -45,12 +46,12 @@ export const Demo = () => {
 
 //FORMULARIO INICIO DE SESION
 	return (
-		<div className="container m-5 p-5">
+		<div className="container m-5 p-5" id="form-login">
 			<form onSubmit={iniciarSesion}>
 			<div className="mb-3">
 				<label for="input_email" className="form-label">Email</label>
 				<input type="email" className="form-control" id="input_email" name="email" aria-describedby="emailHelp" onChange={capturarData}/>
-				<div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+				<div id="emailHelp" className="form-text">Verificar que sea sólo en minusculas.</div>
 			</div>
 			<div className="mb-3">
 				<label for="input_password" className="form-label">Contraseña</label>
@@ -62,7 +63,7 @@ export const Demo = () => {
 			<button type="button" className="btn btn-danger">Volver</button>
 			</Link>
 			<Link to="/single">
-			<button type="button" className="btn btn-success">Crear Usuario</button>
+			<button type="button" className="btn btn-success">Crear 👨‍💼</button>
 			</Link>
 		</div>
 	);
